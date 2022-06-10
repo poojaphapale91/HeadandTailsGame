@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+
+<body>
+    <div class="main-container">
+    <div class="container1">
+    <div class="heading">
+        Toss the coin...!
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+            <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+          </svg>
+    </div>
+    
+    <button type="button" class="btn-toss">Heads</button>
+    <button type="button" class="btn-toss">Tails</button>  
+    <div class="userWin"></div>
+</div>
+
+<div class="container2">
+        <div class="user">
+        <svg style="height: 100px; width: 100px; color: rgb(0, 0, 255);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3H5a2 2 0 0 0-2 2v2m0 10v2a2 2 0 0 0 2 2h2m10 0h2a2 2 0 0 0 2-2v-2m0-10V5a2 2 0 0 0-2-2h-2"></path><circle cx="12" cy="9" r="3" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c-2.761 0-5 1.79-5 4h10c0-2.21-2.239-4-5-4z"></path></svg>
+        <div class="heading"> Player </div>
+            <div class="userMessage"></div>
+        
+    </div> 
+
+    <div class="line"></div>
+        
+    <div class="computer">
+            <svg style="height: 100px; width: 100px; color: rgb(0, 0, 255);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M18 16h2v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-1h2V4c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v12zM4 4v9h12V4H4zm4 11v1h4v-1H8z" fill="blue"></path></svg>
+            <div class="heading"> Computer </div>
+                <div class="compMessage"></div>
+                  </div>
+</div>
+
+
+</div>
+    <script>
+        let userWin=document.querySelector(".userWin");
+        let score=[0,0];
+        let userMessage=document.querySelector(".userMessage");
+        let compMessage=document.querySelector(".compMessage");
+
+        let coinArray=["Heads", "Tails"];
+        let buttons=document.querySelectorAll("button");
+        //console.log(buttons);
+        //as there are 2 buttons, we have to use loop
+        for(let i=0; i<buttons.length;i++){
+            //console.log(buttons[i]);
+            buttons[i].addEventListener("click", tossCoin);
+        }
+        function tossCoin(e){
+            let userGuess= e.target.innerText;
+            //console.log(userGuess);
+            let computerToss=Math.floor(Math.random()*2);
+            //console.log(computerToss);
+            let computerGuess=coinArray[computerToss];
+            //console.log("Computer clicked on: " +coinArray[computerToss] );
+            //console.log("User clicked on: " + userGuess);
+           
+            userMessage.innerHTML+=`Player selected: ${userGuess}</br>`;
+            compMessage.innerHTML+=`Computer selected: ${computerGuess}</br>`;
+            if(userGuess===computerGuess){
+                score[0]++;
+                userWin.innerHTML=`The player wins`;
+            }
+            else{
+                score[1]++;
+                userWin.innerHTML=`The Computer wins`;
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>
